@@ -5,6 +5,8 @@ import food.EFoodType;
 import mobility.Mobile;
 import mobility.Point;
 import food.IEdible;
+import utilities.MessageUtility;
+
 public abstract class Animal extends Mobile implements IEdible {
 
     private String name;
@@ -14,48 +16,71 @@ public abstract class Animal extends Mobile implements IEdible {
 
     public Animal(String name, Point location){
         super(location);
+        MessageUtility.logConstractor("Animal",name);
         this.setName(name);
+
     }
 
     public abstract void makeSound();
 
     public boolean eat(IEdible food){
-        if(food.getFoodtype() == EFoodType.VEGETABLE){
-            double weightGain = this.weight * 0.07;
-            this.weight += weightGain;
-            return true;
+        double gain = diet.eat( this, food);
+        if(gain!=0){
+            this.makeSound();
+            if(this instanceof Lion){
+                ((Lion)this).addScar();
+            }
+            MessageUtility.logBooleanFunction(this.getName(),"eat",food.toString(),true);
+            return this.setWeight(this.getWeight()+gain);
         }
-        else if(food.getFoodtype() == EFoodType.MEAT){
-            double weightGain = this.weight * 0.1;
-            this.weight += weightGain;
-            return true;
-        }
-        else return false;
-
+        MessageUtility.logBooleanFunction(this.getName(),"eat",food.toString(),false);
+        return false;
     }
 
-    protected boolean setWeight(double weight){
+    public boolean setWeight(double weight){
         if(weight > 0) {
             this.weight = weight;
+            MessageUtility.logSetter(name,"setWeight",weight,true);
             return true;
         }
         this.weight = 0;
+        MessageUtility.logSetter(name,"setWeight",weight,false);
         return false;
     }
 
     public abstract EFoodType getFoodtype();
 
     //setters
-    protected boolean setName(String name){
+    public boolean setName(String name){
         if(name.length() > 0) {
             this.name = name;
+            MessageUtility.logSetter(name,"setName",this.name,true);
             return true;
         }
         this.name = " Empty name ";
+        MessageUtility.logSetter(name,"setName",this.name,false);
         return false;
     }
 
+    public String getName(){
+        return this.name;
+    }
     public double getWeight(){
         return this.weight;
+    }
+
+    public boolean setDiet(IDiet diet) {
+        boolean isSuccess = true;
+        this.diet = diet;
+        MessageUtility.logSetter(getName(), "setDiet", getDiet(), isSuccess);
+        return isSuccess;
+    }
+
+    public IDiet getDiet() {
+        MessageUtility.logGetter(getName(), "getDiet", this.diet);
+        return diet;
+    }
+    public String toString() {
+        return "[" + this.getClass().getSimpleName() + "] ";
     }
 }

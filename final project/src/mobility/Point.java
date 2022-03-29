@@ -18,8 +18,8 @@ public class Point {
     public int getX(){return this.x;}
     public int getY(){return this.y;}
 
-    public boolean isValid(){
-        return this.x <= MAX_X_VAL && this.x >= 0 && this.y <= MAX_Y_VAL && this.y >= 0;
+    public static boolean cheackBounderies(Point p){
+        return p.x <= MAX_X_VAL && p.x >= 0 && p.y <= MAX_Y_VAL && p.y >= 0;
     }
 
 }

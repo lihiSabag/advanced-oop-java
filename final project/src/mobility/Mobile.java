@@ -1,6 +1,6 @@
 package mobility;
 
-public class Mobile implements Ilocatable {
+public class Mobile implements ILocatable {
 
     private Point location;
     private double totalDistance;

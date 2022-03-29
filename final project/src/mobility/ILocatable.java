@@ -1,6 +1,6 @@
 package mobility;
 
-public interface Ilocatable {
+public interface ILocatable {
     Point getLocation();
     boolean setLocation(Point p);
 }

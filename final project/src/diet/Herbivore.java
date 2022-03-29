@@ -29,5 +29,10 @@ public abstract class Herbivore extends Animal implements IDiet{
         }
         return 0;
     }
+    public void makeSound(){
+        this.chew();
+    }
+    public abstract void chew();
+
 
 }
