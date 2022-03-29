@@ -36,8 +36,8 @@ public class Program {
 		Random rand = new Random();
 		for (Animal animal : animals) {
 			animal.setWeight(-857);
-//			animal.move(new Point(1, 700));
-//			animal.move(new Point(-1, 50));
+			animal.move(new Point(1, 700));
+			animal.move(new Point(-1, 50));
 		}
 
 		bear.setName("GreenBaloo");
@@ -97,20 +97,20 @@ public class Program {
 
 	}
 
-//	private static void move() {
-//		System.out.println("********************************************");
-//		System.out.println("\t\tMove");
-//		System.out.println("********************************************");
-//		int x = 10, y = 10;
-//		for (Animal animal : animals) {
-//			animal.move(new Point(x, y));
-//			x += 5;
-//			y += 10;
-//		}
-//
-//		animals.get(0).move(new Point(10, 500));
-//
-//	}
+	private static void move() {
+		System.out.println("********************************************");
+		System.out.println("\t\tMove");
+		System.out.println("********************************************");
+		int x = 10, y = 10;
+		for (Animal animal : animals) {
+			animal.move(new Point(x, y));
+			x += 5;
+			y += 10;
+		}
+
+		animals.get(0).move(new Point(10, 500));
+
+	}
 
 	private static void testSound() {
 		System.out.println("********************************************");

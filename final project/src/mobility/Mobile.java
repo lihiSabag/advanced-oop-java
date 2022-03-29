@@ -18,18 +18,24 @@ public class Mobile implements ILocatable {
         double Y = newLocation.getY() - this.location.getY();
         return Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2));
     }
-    public double move(Point p){
-        double distanceTraveled = this.calcDistance(p);
-        this.addTotalDistance(distanceTraveled);
-        this.setLocation(p);
-        return distanceTraveled;
+    public double move(Point newLocation){
+        if(this.setLocation(newLocation)){
+            double distanceTraveled = this.calcDistance(newLocation);
+            this.addTotalDistance(distanceTraveled);
+            return distanceTraveled;
+        }
+        return 0;
     }
     public Point getLocation() {
-        return location;
+        return this.location;
 
     }
-    public boolean setLocation(Point p){
-        this.location = p;
-        return true;
+
+    public boolean setLocation(Point point) {
+        boolean isSuccess = Point.checkBoundaries(point);
+        if (isSuccess) {
+            this.location = new Point(point);
+        }
+        return isSuccess;
     }
 }

@@ -23,7 +23,7 @@ public class ZooActions {
 
     }
     public static boolean move(Object animal, Point point){
-        if(Point.cheackBounderies(point)){
+        if(Point.checkBoundaries(point)){
 
             return true;
         }
