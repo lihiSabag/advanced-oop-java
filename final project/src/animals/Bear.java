@@ -30,21 +30,19 @@ public class Bear extends Omnivore {
             return this.color;
         }
     }
-
+    //constructors
     public Bear(String name) {
         super(name, STARTING_POSITION);
         MessageUtility.logConstractor("Bear", this.getName());
         this.setWeight(STARTING_WEIGHT);
         this.setFurColor(DEFAULT_FURCOLOR);
     }
-
     public Bear(String name, Point location) {
         super(name, location);
         MessageUtility.logConstractor("Bear", this.getName());
         this.setWeight(STARTING_WEIGHT);
         this.setFurColor(DEFAULT_FURCOLOR);
     }
-
     public Bear(String name, String furColor) {
         super(name, STARTING_POSITION);
         MessageUtility.logConstractor("Bear", this.getName());
@@ -52,14 +50,7 @@ public class Bear extends Omnivore {
         this.setFurColor(furColor);
     }
 
-    public void roar() {
-        MessageUtility.logSound(this.getName(), roar);
-    }
-
-    public EFoodType getFoodtype() {
-        return BEAR;
-    }
-
+    //API
     public boolean validFurColor(String furColor) {
         for (FurColors color : FurColors.values()) {
             if (color.getFurcolorValue().equals(furColor)) {
@@ -68,6 +59,11 @@ public class Bear extends Omnivore {
         }
         return false;
     }
+    public void roar() {
+        MessageUtility.logSound(this.getName(), roar);
+    }
+
+    //setters
     public boolean setFurColor(String furColor) {
         if(validFurColor(furColor)){
             this.furColor = furColor;
@@ -80,5 +76,11 @@ public class Bear extends Omnivore {
             return false;
         }
     }
+
+    //getters
+    public EFoodType getFoodtype() {
+        return BEAR;
+    }
+
 
 }

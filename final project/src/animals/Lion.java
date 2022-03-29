@@ -14,7 +14,7 @@ public class Lion extends Carnivore {
     private static final Point STARTING_POSITION = new Point(20,0);
     private static final String roar= "Roars, then stretches and shakes its mane";
     private int scarCount = 0;
-
+    //Constructors
     public Lion(String name){
         super(name,STARTING_POSITION);
         MessageUtility.logConstractor("Lion", this.getName());
@@ -25,12 +25,10 @@ public class Lion extends Carnivore {
         super(name,location);
         MessageUtility.logConstractor("Lion", this.getName());
     }
+
+    //API
     public void roar(){
         MessageUtility.logSound(this.getName(), roar);
-    }
-
-    public EFoodType getFoodtype(){
-        return LION;
     }
     public void addScar(){
         Random random = new Random();
@@ -39,4 +37,9 @@ public class Lion extends Carnivore {
         }
 
     }
+    //getters
+    public EFoodType getFoodtype(){
+        return LION;
+    }
+
 }

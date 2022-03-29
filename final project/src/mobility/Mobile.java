@@ -10,6 +10,7 @@ public class Mobile implements ILocatable {
         this.totalDistance = 0;
 
     }
+    //API
     public void addTotalDistance(double distance){
         this.totalDistance += distance;
     }
@@ -26,16 +27,17 @@ public class Mobile implements ILocatable {
         }
         return 0;
     }
-    public Point getLocation() {
-        return this.location;
 
-    }
-
+    //setters
     public boolean setLocation(Point point) {
         boolean isSuccess = Point.checkBoundaries(point);
         if (isSuccess) {
             this.location = new Point(point);
         }
         return isSuccess;
+    }
+    //getters
+    public Point getLocation() {
+        return this.location;
     }
 }

@@ -16,7 +16,7 @@ public class Elephant extends Herbivore {
     private static final String chew = "Trumpets with joy while flapping its ears, then chews";
 
     private double trunkLength;
-
+    //constructors
     public Elephant(String name){
         super(name,STARTING_POSITION);
         MessageUtility.logConstractor("Elephant", this.getName());
@@ -35,13 +35,12 @@ public class Elephant extends Herbivore {
         this.setWeight(STARTING_WEIGHT);
         this.settrunkLength(trunkLength);
     }
+
+    //API
     public void chew(){
         MessageUtility.logSound(this.getName(),chew);
     }
-
-    public EFoodType getFoodtype() {
-        return ELEPHANT;
-    }
+    //setters
     public boolean settrunkLength(double trunkLength){
         if(trunkLength > MIN_TRUNK_LENGTH && trunkLength < MAX_TRUNK_LENGTH){
             this.trunkLength = trunkLength;
@@ -50,5 +49,9 @@ public class Elephant extends Herbivore {
         }
         MessageUtility.logSetter(this.getName(),"settrunkLength",trunkLength,false);
         return false;
+    }
+    //getters
+    public EFoodType getFoodtype() {
+        return ELEPHANT;
     }
 }

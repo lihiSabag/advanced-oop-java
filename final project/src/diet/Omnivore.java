@@ -1,7 +1,6 @@
 package diet;
 
 import food.EFoodType;
-import food.IEdible;
 import mobility.Point;
 
 public abstract class Omnivore extends Carnivore{

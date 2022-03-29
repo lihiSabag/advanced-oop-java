@@ -16,7 +16,7 @@ public class Turtle extends Herbivore {
     private static final String chew = "Retracts its head in then eats quietly";
 
     private int age;
-
+    //Constructors
     public Turtle(String name){
         super(name, STARTING_POSITION);
         MessageUtility.logConstractor("Turtle", this.getName());
@@ -37,13 +37,12 @@ public class Turtle extends Herbivore {
         this.setAge(age);
 
     }
+    //API
     public void chew(){
         MessageUtility.logSound(this.getName(),chew);
     }
 
-    public EFoodType getFoodtype(){
-        return TURTLE;
-    }
+    //setters
     public boolean setAge(int age){
         if(age >= MIN_AGE && age <= MAX_AGE){
             this.age = age;
@@ -54,5 +53,9 @@ public class Turtle extends Herbivore {
         MessageUtility.logSetter(this.getName(),"setAge",age,false);
         return false;
 
+    }
+    //getters
+    public EFoodType getFoodtype(){
+        return TURTLE;
     }
 }

@@ -16,7 +16,7 @@ public class Giraffe extends Herbivore {
     private static final String chew ="Bleats and Stomps its legs, then chews";
 
     private double neckLength;
-
+    //Constructors
     public Giraffe(String name){
         super(name,STARTING_POSITION);
         MessageUtility.logConstractor("Giraffe", this.getName());
@@ -35,14 +35,13 @@ public class Giraffe extends Herbivore {
         this.setWeight(STARTING_WEIGHT);
         this.setNeckLength(neckLength);
     }
+
+    //API
     public void chew(){
         MessageUtility.logSound(this.getName(),chew );
     }
 
-    public EFoodType getFoodtype() {
-        return GIRAFFE;
-    }
-
+    //setters
     public boolean setNeckLength(double neckLength){
         if(neckLength > MIN_NECK_LENGTH && neckLength < MAX_NECK_LENGTH){
             this.neckLength = neckLength;
@@ -52,6 +51,10 @@ public class Giraffe extends Herbivore {
         }
         MessageUtility.logSetter(this.getName(),"setNeckLength",neckLength,false);
         return false;
+    }
+    //getters
+    public EFoodType getFoodtype() {
+        return GIRAFFE;
     }
 
 }

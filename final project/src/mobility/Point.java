@@ -6,7 +6,6 @@ public class Point {
     private static final int MAX_X_VAL = 800;
     private static final int MAX_Y_VAL = 600;
 
-
     private int x;
     private int y;
 
@@ -18,7 +17,16 @@ public class Point {
             //MessageUtility.logConstractor("Point", "Default y = 0");
         }
     }
-
+    //copy constructor
+    public Point(Point other) {
+        this.setX(other.getX());
+        this.setY(other.getY());
+    }
+    //API
+    public static boolean checkBoundaries(Point p){
+        return p.x <= MAX_X_VAL && p.x >= 0 && p.y <= MAX_Y_VAL && p.y >= 0;
+    }
+    //setters
     public boolean setX(int x){
         if(x < MAX_X_VAL && x > 0 ){
             this.x = x;
@@ -35,15 +43,8 @@ public class Point {
         this.y = 0;
         return false;
     }
-    public Point(Point other) {
-        this.setX(other.getX());
-        this.setY(other.getY());
-    }
+    //getters
     public int getX(){return this.x;}
     public int getY(){return this.y;}
-
-    public static boolean checkBoundaries(Point p){
-        return p.x <= MAX_X_VAL && p.x >= 0 && p.y <= MAX_Y_VAL && p.y >= 0;
-    }
 
 }
