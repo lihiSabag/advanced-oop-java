@@ -1,18 +1,22 @@
 package mobility;
 
+import utilities.MessageUtility;
+
 public class Mobile implements ILocatable {
 
     private Point location;
     private double totalDistance;
 
     public Mobile(Point location){
-        this.location = location;
+        this.setLocation(location);
         this.totalDistance = 0;
 
     }
     //API
     public void addTotalDistance(double distance){
-        this.totalDistance += distance;
+        if(distance > 0) {
+            this.totalDistance += distance;
+        }
     }
     public double calcDistance(Point newLocation){
         double X = newLocation.getX() - this.location.getX();
@@ -20,9 +24,10 @@ public class Mobile implements ILocatable {
         return Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2));
     }
     public double move(Point newLocation){
-        if(this.setLocation(newLocation)){
+        if(Point.checkBoundaries(newLocation)){
             double distanceTraveled = this.calcDistance(newLocation);
             this.addTotalDistance(distanceTraveled);
+            this.setLocation(newLocation);
             return distanceTraveled;
         }
         return 0;
@@ -38,6 +43,14 @@ public class Mobile implements ILocatable {
     }
     //getters
     public Point getLocation() {
+        MessageUtility.logGetter("Mobile", "getLocation", this.location);
         return this.location;
+    }
+    public double getTotalDistance() {
+        MessageUtility.logGetter("Mobile", "getTotalDistance", this.totalDistance);
+        return this.totalDistance;
+    }
+    public String toString() {
+        return "[!]" + this.getClass().getSimpleName() + ":  \t" + "distance:["+ this.getTotalDistance()+"]";
     }
 }
