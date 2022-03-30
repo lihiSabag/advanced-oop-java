@@ -3,32 +3,24 @@ package diet;
 import food.EFoodType;
 import food.IEdible;
 import animals.*;
-import mobility.Point;
 
-public abstract class Carnivore extends Animal implements IDiet{
+import utilities.MessageUtility;
 
-    private static final String sound = "ROAR";
-    public Carnivore(String name, Point location){
-        super(name,location);
-        IDiet diet = this;
-        this.setDiet(this);
-
-    }
+public class Carnivore implements IDiet{
 
     public boolean canEat(EFoodType food){
-        return food == EFoodType.MEAT;
+        boolean isSuccess =  food == EFoodType.MEAT;
+        MessageUtility.logBooleanFunction("Carnivore","canEat",food,isSuccess);
+        return isSuccess;
     }
     public double eat(Animal animal, IEdible food){
         if(this.canEat(food.getFoodtype())){
-            return animal.getWeight() * 0.07;
+            return animal.getWeight() * 0.10;
         }
         return 0;
     }
-//    public boolean eat(IEdible food){
-//        return canEat(food.getFoodtype());
-//    }
-    public void makeSound(){
-        this.roar();
+    public String toString() {
+        return "[" + this.getClass().getSimpleName() + "] ";
     }
-    public abstract void roar();
+
 }

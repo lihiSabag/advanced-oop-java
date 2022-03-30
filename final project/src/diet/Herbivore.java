@@ -3,36 +3,30 @@ package diet;
 import animals.Animal;
 import food.EFoodType;
 import food.IEdible;
-import mobility.Point;
-
-public abstract class Herbivore extends Animal implements IDiet{
+import utilities.MessageUtility;
 
 
-    public Herbivore(String name, Point location){
-        super(name,location);
-    }
+public class Herbivore implements IDiet{
+
     public boolean canEat(EFoodType food){
-        return food == EFoodType.VEGETABLE;
+        boolean isSuccess =  food == EFoodType.VEGETABLE;
+        MessageUtility.logBooleanFunction("Herbivore","canEat",food,isSuccess);
+        return isSuccess;
     }
 
-    public boolean eat(IEdible food){
-        double weight = eat(this,food);
-        if(weight != 0 ) {
-            this.setWeight(weight);
-            return true;
-        }
-        return false;
-    }
     public double eat(Animal animal, IEdible food){
         if(canEat(food.getFoodtype())){
             return animal.getWeight() * 0.07;
         }
         return 0;
     }
-    public void makeSound(){
-        this.chew();
+    //getters
+    public EFoodType getFoodtype() {
+        return EFoodType.MEAT;
     }
-    public abstract void chew();
 
+    public String toString() {
+        return "[" + this.getClass().getSimpleName() + "] ";
+    }
 
 }
