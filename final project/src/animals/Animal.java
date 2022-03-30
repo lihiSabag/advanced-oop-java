@@ -17,6 +17,7 @@ public abstract class Animal extends Mobile implements IEdible {
         super(location);
         MessageUtility.logConstractor("Animal",name);
         this.setName(name);
+
     }
     //abstract method
     public abstract void makeSound();
@@ -24,56 +25,62 @@ public abstract class Animal extends Mobile implements IEdible {
 
     //API
     public boolean eat(IEdible food){
-        double gain = diet.eat( this, food);
-        if(gain!=0){
-            this.makeSound();
-            if(this instanceof Lion){
-                ((Lion)this).addScar();
-            }
-            MessageUtility.logBooleanFunction(this.getName(),"eat",food.toString(),true);
-            return this.setWeight(this.getWeight()+gain);
+        boolean isSuccess = false;
+        double weightGain = diet.eat( this, food);
+        if(weightGain > 0){
+               setWeight(this.getWeight()+weightGain);
+               this.makeSound();
+                isSuccess = true;
         }
-        MessageUtility.logBooleanFunction(this.getName(),"eat",food.toString(),false);
-        return false;
+        MessageUtility.logBooleanFunction(this.getName(),"eat",food.toString(),isSuccess);
+        return isSuccess;
     }
     public double move(Point nextLocation) {
         double distance =  super.move(nextLocation);
-        this.setWeight(getWeight() - (distance * getWeight() * 0.00025));
+        if (distance != 0) {
+            this.setWeight(getWeight() - (distance * getWeight() * 0.00025));
+        }
         return distance;
     }
 
     //setters
     public boolean setName(String name){
+        boolean isSuccess = false;
         if(name.length() > 0) {
             this.name = name;
-            MessageUtility.logSetter(name,"setName",this.name,true);
-            return true;
+            isSuccess = true;
         }
-        this.name = " Empty name ";
-        MessageUtility.logSetter(name,"setName",this.name,false);
-        return false;
+        else {
+            this.name = " Empty name ";
+        }
+        MessageUtility.logSetter(name,"setName",this.name,isSuccess);
+        return isSuccess;
     }
     public boolean setWeight(double weight){
+        boolean isSuccess = false;
         if(weight > 0) {
             this.weight = weight;
-            MessageUtility.logSetter(name,"setWeight",weight,true);
-            return true;
+            isSuccess = true;
         }
-        this.weight = 0;
-        MessageUtility.logSetter(name,"setWeight",weight,false);
-        return false;
+        else {
+            this.weight = 0;
+        }
+        MessageUtility.logSetter(name,"setWeight",weight,isSuccess);
+        return isSuccess;
     }
     public boolean setDiet(IDiet diet) {
         boolean isSuccess = true;
         this.diet = diet;
-        MessageUtility.logSetter(getName(), "setDiet", getDiet(), isSuccess);
+        MessageUtility.logSetter(this.getName(), "setDiet", this.diet, isSuccess);
         return isSuccess;
     }
     //getters
     public String getName(){
+
         return this.name;
     }
     public double getWeight(){
+        MessageUtility.logGetter(this.getName(), "getWeight", this.weight);
         return this.weight;
     }
     public IDiet getDiet() {
@@ -82,6 +89,6 @@ public abstract class Animal extends Mobile implements IEdible {
     }
 
     public String toString() {
-        return "[" + this.getClass().getSimpleName() + "] ";
+        return "[" + this.getClass().getSimpleName() + "] " + this.getName();
     }
 }

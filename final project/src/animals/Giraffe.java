@@ -1,11 +1,12 @@
 package animals;
 
+import diet.Carnivore;
 import diet.Herbivore;
 import food.EFoodType;
 import mobility.Point;
 import utilities.MessageUtility;
 
-public class Giraffe extends Herbivore {
+public class Giraffe extends ChewingAnimals {
 
     private static final EFoodType GIRAFFE = EFoodType.MEAT;
     private static final double STARTING_WEIGHT = 450;
@@ -22,18 +23,21 @@ public class Giraffe extends Herbivore {
         MessageUtility.logConstractor("Giraffe", this.getName());
         this.setWeight(STARTING_WEIGHT);
         this.setNeckLength(DEFAULT_NECK_LENGTH);
+        this.setDiet(new Herbivore());
     }
     public Giraffe(String name,Point location){
         super(name,location);
         MessageUtility.logConstractor("Giraffe", this.getName());
         this.setWeight(STARTING_WEIGHT);
         this.setNeckLength(DEFAULT_NECK_LENGTH);
+        this.setDiet(new Herbivore());
     }
     public Giraffe(String name, double neckLength){
         super(name,STARTING_POSITION);
         MessageUtility.logConstractor("Giraffe", this.getName());
         this.setWeight(STARTING_WEIGHT);
         this.setNeckLength(neckLength);
+        this.setDiet(new Herbivore());
     }
 
     //API
@@ -43,18 +47,18 @@ public class Giraffe extends Herbivore {
 
     //setters
     public boolean setNeckLength(double neckLength){
+        boolean isSuccess = false;
         if(neckLength > MIN_NECK_LENGTH && neckLength < MAX_NECK_LENGTH){
             this.neckLength = neckLength;
-            MessageUtility.logSetter(this.getName(),"setNeckLength",neckLength,true);
+            isSuccess = true;
 
-            return true;
         }
-        MessageUtility.logSetter(this.getName(),"setNeckLength",neckLength,false);
-        return false;
+        MessageUtility.logSetter(this.getName(),"setNeckLength",neckLength,isSuccess);
+        return isSuccess;
     }
     //getters
-    public EFoodType getFoodtype() {
-        return GIRAFFE;
-    }
+//    public EFoodType getFoodtype() {
+//        return GIRAFFE;
+//    }
 
 }

@@ -5,7 +5,7 @@ import food.EFoodType;
 import mobility.Point;
 import utilities.MessageUtility;
 
-public class Elephant extends Herbivore {
+public class Elephant extends ChewingAnimals {
 
     private static final EFoodType ELEPHANT = EFoodType.MEAT;
     private static final double STARTING_WEIGHT = 500;
@@ -22,18 +22,21 @@ public class Elephant extends Herbivore {
         MessageUtility.logConstractor("Elephant", this.getName());
         this.setWeight(STARTING_WEIGHT);
         this.settrunkLength(DEFAULT_TRUNK_LENGTH);
+        this.setDiet(new Herbivore());
     }
     public Elephant(String name, Point location){
         super(name,location);
         MessageUtility.logConstractor("Elephant", this.getName());
         this.setWeight(STARTING_WEIGHT);
         this.settrunkLength(DEFAULT_TRUNK_LENGTH);
+        this.setDiet(new Herbivore());
     }
     public Elephant(String name,double trunkLength){
         super(name,STARTING_POSITION);
         MessageUtility.logConstractor("Elephant", this.getName());
         this.setWeight(STARTING_WEIGHT);
         this.settrunkLength(trunkLength);
+        this.setDiet(new Herbivore());
     }
 
     //API
@@ -42,16 +45,16 @@ public class Elephant extends Herbivore {
     }
     //setters
     public boolean settrunkLength(double trunkLength){
+        boolean isSuccess = false;
         if(trunkLength > MIN_TRUNK_LENGTH && trunkLength < MAX_TRUNK_LENGTH){
             this.trunkLength = trunkLength;
-            MessageUtility.logSetter(this.getName(),"settrunkLength",trunkLength,true);
-            return true;
+            isSuccess = true;
         }
-        MessageUtility.logSetter(this.getName(),"settrunkLength",trunkLength,false);
-        return false;
+        MessageUtility.logSetter(this.getName(),"settrunkLength",trunkLength,isSuccess);
+        return isSuccess;
     }
     //getters
-    public EFoodType getFoodtype() {
-        return ELEPHANT;
-    }
+//    public EFoodType getFoodtype() {
+//        return ELEPHANT;
+//    }
 }

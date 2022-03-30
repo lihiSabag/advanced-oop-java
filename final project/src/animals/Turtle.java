@@ -5,7 +5,7 @@ import food.EFoodType;
 import mobility.Point;
 import utilities.MessageUtility;
 
-public class Turtle extends Herbivore {
+public class Turtle extends ChewingAnimals {
 
     private static final EFoodType TURTLE = EFoodType.MEAT;
     private static final double STARTING_WEIGHT = 1;
@@ -22,19 +22,21 @@ public class Turtle extends Herbivore {
         MessageUtility.logConstractor("Turtle", this.getName());
         this.setWeight(STARTING_WEIGHT);
         this.setAge(DEFAULT_AGE);
-
+        this.setDiet(new Herbivore());
     }
     public Turtle(String name,Point location){
         super(name,location);
         MessageUtility.logConstractor("Turtle", this.getName());
         this.setWeight(STARTING_WEIGHT);
         this.setAge(DEFAULT_AGE);
+        this.setDiet(new Herbivore());
     }
     public Turtle(String name,int age){
         super(name, STARTING_POSITION);
         MessageUtility.logConstractor("Turtle", this.getName());
         this.setWeight(STARTING_WEIGHT);
         this.setAge(age);
+        this.setDiet(new Herbivore());
 
     }
     //API
@@ -44,18 +46,17 @@ public class Turtle extends Herbivore {
 
     //setters
     public boolean setAge(int age){
+        boolean isSuccess = false;
         if(age >= MIN_AGE && age <= MAX_AGE){
             this.age = age;
-            MessageUtility.logSetter(this.getName(),"setAge",age,true);
-
-            return true;
+            isSuccess = true;
         }
-        MessageUtility.logSetter(this.getName(),"setAge",age,false);
-        return false;
+        MessageUtility.logSetter(this.getName(),"setAge",age,isSuccess);
+        return isSuccess;
 
     }
     //getters
-    public EFoodType getFoodtype(){
-        return TURTLE;
-    }
+//    public EFoodType getFoodtype(){
+//        return TURTLE;
+//    }
 }
