@@ -7,7 +7,6 @@ import utilities.MessageUtility;
 
 public class Turtle extends ChewingAnimals {
 
-    private static final EFoodType TURTLE = EFoodType.MEAT;
     private static final double STARTING_WEIGHT = 1;
     private static final Point STARTING_POSITION = new Point(80,0);
     private static final int MIN_AGE = 0;
@@ -16,6 +15,7 @@ public class Turtle extends ChewingAnimals {
     private static final String chew = "Retracts its head in then eats quietly";
 
     private int age;
+
     //Constructors
     public Turtle(String name){
         super(name, STARTING_POSITION);
@@ -55,8 +55,4 @@ public class Turtle extends ChewingAnimals {
         return isSuccess;
 
     }
-    //getters
-//    public EFoodType getFoodtype(){
-//        return TURTLE;
-//    }
 }

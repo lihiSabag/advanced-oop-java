@@ -34,7 +34,7 @@ public class Lion extends RoaringAnimal {
     public void roar(){
         MessageUtility.logSound(this.getName(), roar);
     }
-    //////////////////////////////
+
     public boolean eat(IEdible food) {
         boolean isSuccess = super.eat(food);
         if (isSuccess){
@@ -46,18 +46,18 @@ public class Lion extends RoaringAnimal {
     public boolean setScar(int scar){
         boolean isSuccess = false;
         Random random = new Random();
-        if (random.nextInt(2) == 1) {
+        if ( random.nextInt(2) == 1) {
             scarCount+= scar;
             isSuccess = true;
         }
 
-        MessageUtility.logSetter(this.getClass().getSimpleName(), "setScar", scarCount, isSuccess);
+        MessageUtility.logSetter(this.getName(), "setScar", scar, isSuccess);
         return isSuccess;
     }
+
     //getters
     public EFoodType getFoodtype(){
         MessageUtility.logGetter(this.getName(), "getFoodType", LION);
         return LION;
     }
-
 }

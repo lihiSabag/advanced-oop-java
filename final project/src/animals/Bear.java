@@ -84,10 +84,5 @@ public class Bear extends RoaringAnimal {
         return isSuccess;
     }
 
-    //getters
-    public EFoodType getFoodtype() {
-        return BEAR;
-    }
-
 
 }

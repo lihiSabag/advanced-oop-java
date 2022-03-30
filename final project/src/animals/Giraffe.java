@@ -1,14 +1,12 @@
 package animals;
 
-import diet.Carnivore;
+
 import diet.Herbivore;
-import food.EFoodType;
 import mobility.Point;
 import utilities.MessageUtility;
 
 public class Giraffe extends ChewingAnimals {
 
-    private static final EFoodType GIRAFFE = EFoodType.MEAT;
     private static final double STARTING_WEIGHT = 450;
     private static final Point STARTING_POSITION = new Point(50,0);
     private static final double MIN_NECK_LENGTH = 1;
@@ -56,9 +54,5 @@ public class Giraffe extends ChewingAnimals {
         MessageUtility.logSetter(this.getName(),"setNeckLength",neckLength,isSuccess);
         return isSuccess;
     }
-    //getters
-//    public EFoodType getFoodtype() {
-//        return GIRAFFE;
-//    }
 
 }

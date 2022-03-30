@@ -10,7 +10,7 @@ public class Carnivore implements IDiet{
 
     public boolean canEat(EFoodType food){
         boolean isSuccess =  food == EFoodType.MEAT;
-        MessageUtility.logBooleanFunction("Carnivore","canEat",food,isSuccess);
+        MessageUtility.logBooleanFunction(this.toString(),"canEat",food,isSuccess);
         return isSuccess;
     }
     public double eat(Animal animal, IEdible food){

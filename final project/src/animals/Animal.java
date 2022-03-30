@@ -17,7 +17,6 @@ public abstract class Animal extends Mobile implements IEdible {
         super(location);
         MessageUtility.logConstractor("Animal",name);
         this.setName(name);
-
     }
     //abstract method
     public abstract void makeSound();
@@ -33,12 +32,18 @@ public abstract class Animal extends Mobile implements IEdible {
                 isSuccess = true;
         }
         MessageUtility.logBooleanFunction(this.getName(),"eat",food.toString(),isSuccess);
+        System.out.println();
         return isSuccess;
     }
     public double move(Point nextLocation) {
         double distance =  super.move(nextLocation);
         if (distance != 0) {
             this.setWeight(getWeight() - (distance * getWeight() * 0.00025));
+            MessageUtility.logSetter(this.getName(),"move",nextLocation,true);
+
+        }
+        else {
+            MessageUtility.logSetter(this.getName(), "move", nextLocation, false);
         }
         return distance;
     }
@@ -76,9 +81,9 @@ public abstract class Animal extends Mobile implements IEdible {
     }
     //getters
     public String getName(){
-
         return this.name;
     }
+
     public double getWeight(){
         MessageUtility.logGetter(this.getName(), "getWeight", this.weight);
         return this.weight;
@@ -89,6 +94,7 @@ public abstract class Animal extends Mobile implements IEdible {
     }
 
     public String toString() {
-        return "[" + this.getClass().getSimpleName() + "] " + this.getName();
+
+        return super.toString()+ "weight:["+ this.getWeight()+"]";
     }
 }

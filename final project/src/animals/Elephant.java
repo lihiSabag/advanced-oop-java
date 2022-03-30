@@ -1,13 +1,12 @@
 package animals;
 
 import diet.Herbivore;
-import food.EFoodType;
 import mobility.Point;
 import utilities.MessageUtility;
 
 public class Elephant extends ChewingAnimals {
 
-    private static final EFoodType ELEPHANT = EFoodType.MEAT;
+
     private static final double STARTING_WEIGHT = 500;
     private static final Point STARTING_POSITION = new Point(50,90);
     private static final double MIN_TRUNK_LENGTH = 0.5;
@@ -53,8 +52,5 @@ public class Elephant extends ChewingAnimals {
         MessageUtility.logSetter(this.getName(),"settrunkLength",trunkLength,isSuccess);
         return isSuccess;
     }
-    //getters
-//    public EFoodType getFoodtype() {
-//        return ELEPHANT;
-//    }
+
 }
