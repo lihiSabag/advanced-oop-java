@@ -10,41 +10,30 @@ public class Point {
     private int y;
 
     public Point(int x, int y){
-        if(!(this.setX(x))){
-            //MessageUtility.logConstractor("Point", "Default x = 0");
-        }
-        if(!(this.setY(y))){
-            //MessageUtility.logConstractor("Point", "Default y = 0");
-        }
+        this.x = x;
+        this.y = y;
     }
+
     //copy constructor
     public Point(Point other) {
-        this.setX(other.getX());
-        this.setY(other.getY());
+        if (Point.checkBoundaries(other)) {
+            this.x = other.getX();
+            this.y = other.getY();
+        }
     }
+
     //API
     public static boolean checkBoundaries(Point p){
-        return p.x <= MAX_X_VAL && p.x >= 0 && p.y <= MAX_Y_VAL && p.y >= 0;
+        boolean isSuccess =  p.x <= MAX_X_VAL && p.x >= 0 && p.y <= MAX_Y_VAL && p.y >= 0;
+        MessageUtility.logBooleanFunction("Point","checkBoundaries",p.toString(),isSuccess);
+        return isSuccess;
     }
-    //setters
-    public boolean setX(int x){
-        if(x < MAX_X_VAL && x > 0 ){
-            this.x = x;
-            return true;
-        }
-        this.x = 0;
-        return false;
-    }
-    public boolean setY(int y){
-        if(y < MAX_Y_VAL && y > 0 ){
-            this.y = y;
-            return true;
-        }
-        this.y = 0;
-        return false;
-    }
+
     //getters
     public int getX(){return this.x;}
     public int getY(){return this.y;}
 
+    public String toString() {
+        return "(" + this.getX() + "," + this.getY() + ") " ;
+    }
 }
