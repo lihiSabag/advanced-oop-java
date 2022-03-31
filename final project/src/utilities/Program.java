@@ -78,21 +78,20 @@ public class Program {
 		animals.add(giraffe);
 		turtle = new Turtle("Rafael", 50);
 		animals.add(turtle);
-		//animals.add(new Bear("Ted", "BROWN"));
+		animals.add(new Bear("Ted", "BROWN"));
 
 		food = new LinkedList<>();
-		food.add(new Cabbage());
-		food.add(animals.get(0)); // Lion
-		food.add(animals.get(3)); // Giraffe
-
+		//food.add(new Cabbage());
+		food.add(animals.get(5)); // Lion
+		//food.add(animals.get(3)); // Giraffe
 	}
 
 	public static void main(String[] args) {
-
+		
 		init();
 		testSound();
 		feed();
-		//move();
+		move();
 		changeValues();
 
 	}
@@ -108,7 +107,7 @@ public class Program {
 			y += 10;
 		}
 
-		animals.get(0).move(new Point(10, 500));
+		animals.get(0).move(new Point(300, 500));
 
 	}
 

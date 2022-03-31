@@ -16,16 +16,13 @@ public class Point {
 
     //copy constructor
     public Point(Point other) {
-        if (Point.checkBoundaries(other)) {
             this.x = other.getX();
             this.y = other.getY();
-        }
     }
 
     //API
     public static boolean checkBoundaries(Point p){
         boolean isSuccess =  p.x <= MAX_X_VAL && p.x >= 0 && p.y <= MAX_Y_VAL && p.y >= 0;
-        MessageUtility.logBooleanFunction("Point","checkBoundaries",p.toString(),isSuccess);
         return isSuccess;
     }
 
