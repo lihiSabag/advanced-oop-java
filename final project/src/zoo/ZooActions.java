@@ -345,7 +345,7 @@ public class ZooActions {
         System.out.println("========================= Building the zoo =========================");
         System.out.println("Please enter the number of animals in the zoo (At least 3 animals): ");
         size = intInput();
-        while (size < 3) {
+        while (size < MIN_NUM_OF_ANIMALS) {
             System.out.println("Invalid input, The minimum size is 3 ");
             System.out.print("Enter your choice: ");
             size = intInput();
