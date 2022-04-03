@@ -92,8 +92,7 @@ public abstract class Animal extends Mobile implements IEdible {
         return diet;
     }
 
-    public String toString() {
-
-        return super.toString()+ "weight:["+ this.getWeight()+"]";
-    }
+   public String toString(){
+        return "["+this.getClass().getSimpleName() +"]:"+this.getName();
+   }
 }

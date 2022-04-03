@@ -8,6 +8,7 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
+
 public class ZooActions {
     private static final int MIN_NUM_OF_ANIMALS = 3;
     private static Scanner sc = new Scanner(System.in);
@@ -28,6 +29,7 @@ public class ZooActions {
     }
 
     //Input verification methods
+
     private static int intInput(){
         int input = 0;
 
@@ -68,28 +70,11 @@ public class ZooActions {
     private static Point pointInput(){
         int x = 1;
         int y = 1;
-        boolean validInput = false;
-        while (!validInput)
-        {
-            System.out.print("Please enter an integer to the value X of the point (Maximum value-800): ");
-            x = intInput();
-            validInput = true;
-            if(!Point.checkBoundaries(new Point(x,y))){
-                System.out.println("The X value is out of bound , please enter a valid value");
-                validInput =false;
-            }
-        }
-        validInput = false;
-        while (!validInput)
-        {
-            System.out.print("Please enter an integer to the value Y of the point (Maximum value-600): ");
-            y = intInput();
-            validInput = true;
-            if(!Point.checkBoundaries(new Point(x,y))){
-                System.out.println("The Y value is out of bound , please enter a valid values");
-                validInput =false;
-            }
-        }
+
+        System.out.print("Please enter an integer to the value X of the point (Maximum value-800): ");
+        x = intInput();
+        System.out.print("Please enter an integer to the value Y of the point (Maximum value-600): ");
+        y = intInput();
         Point location = new Point(x,y);
         return location;
     }
@@ -197,8 +182,14 @@ public class ZooActions {
             int selection = intInput();
             if (selection == 1) {
                 //point input
-                Point location = pointInput();
-                animalsArr[i] = createAnimalWithLocation(userSelection, name, location);
+                Point point = pointInput();
+                if(Point.checkBoundaries(point)){
+                    animalsArr[i] = createAnimalWithLocation(userSelection, name,point);
+                }
+                else {
+                    animalsArr[i] = createAnimal(userSelection, name);
+                }
+
             } else {
                 animalsArr[i] = createAnimal(userSelection, name);
             }
@@ -345,7 +336,7 @@ public class ZooActions {
         System.out.println("========================= Building the zoo =========================");
         System.out.println("Please enter the number of animals in the zoo (At least 3 animals): ");
         size = intInput();
-        while (size < MIN_NUM_OF_ANIMALS) {
+        while (size < 1) {
             System.out.println("Invalid input, The minimum size is 3 ");
             System.out.print("Enter your choice: ");
             size = intInput();
@@ -370,7 +361,9 @@ public class ZooActions {
         for (int i = 0; i < raffle; i++){
             int first = random.nextInt(size);
             int second = random.nextInt(size);
-            ZooActions.eat(animalsArr[first], animalsArr[second]);
+            if(ZooActions.eat(animalsArr[first], animalsArr[second])){
+                animalsArr[second] =null;
+            }
         }
         System.out.println("=============== End  Simulation ===============");
 
